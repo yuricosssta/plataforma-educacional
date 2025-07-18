@@ -12,7 +12,7 @@ export default function EditPostPage() {
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
   const params = useParams();
-  const id = params.id as string;
+  const id = params._id as string;
 
   const { currentPost, status } = useSelector((state: RootState) => state.posts);
 
@@ -28,7 +28,7 @@ export default function EditPostPage() {
     });
   };
 
-  if (!currentPost || currentPost.id !== id) {
+  if (!currentPost || currentPost._id !== id) {
     return <p>Carregando dados do post...</p>;
   }
 

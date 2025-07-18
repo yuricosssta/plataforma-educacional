@@ -1,21 +1,15 @@
-# Usa uma imagem Node com suporte a Expo
 FROM node:18-alpine
 
+WORKDIR /app
 
-# Define o diretório de trabalho
-WORKDIR /app/frontend
-
-# Copia os arquivos de dependência
 COPY package.json ./
 COPY package-lock.json ./
-
-# Instala as dependências
 RUN npm install
 
-# Copia o restante dos arquivos
 COPY . .
 
-EXPOSE 8080
+RUN npm run build
 
-# Comando para iniciar
-CMD ["npm", "run", "dev" ]
+EXPOSE 3000
+
+CMD ["npm", "start"]

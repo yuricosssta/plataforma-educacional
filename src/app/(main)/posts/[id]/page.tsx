@@ -10,7 +10,7 @@ import { fetchPostById } from '@/lib/redux/slices/postsSlice';
 export default function PostDetailPage() {
   const dispatch = useDispatch<AppDispatch>();
   const params = useParams();
-  const id = params.id as string; // Pega o ID da URL
+  const id = params._id as string; // Pega o ID da URL
 
   // Seleciona os dados relevantes do estado do Redux
   const { currentPost, status, error } = useSelector((state: RootState) => state.posts);
@@ -34,7 +34,7 @@ export default function PostDetailPage() {
   }
   
   // Garante que o post carregado corresponde ao ID da URL para evitar mostrar dados antigos
-  if (currentPost.id !== id) {
+  if (currentPost._id !== id) {
      return <div className="text-center mt-10">Carregando publicação...</div>;
   }
 
@@ -45,7 +45,7 @@ export default function PostDetailPage() {
         <Link href="/posts" className="text-blue-600 hover:underline">
           &larr; Voltar para todas as publicações
         </Link>
-        <Link href={`/posts/${currentPost.id}/edit`} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        <Link href={`/posts/${currentPost._id}/edit`} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
           Editar
         </Link>
       </div>

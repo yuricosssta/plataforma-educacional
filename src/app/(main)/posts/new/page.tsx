@@ -12,7 +12,7 @@ export default function NewPostPage() {
   const router = useRouter();
   const { status } = useSelector((state: RootState) => state.posts);
 
-  const handleSubmit = (postData: Omit<IPost, 'id'>) => {
+  const handleSubmit = (postData: Omit<IPost, '_id'>) => {
     dispatch(createNewPost(postData)).then(() => {
       router.push('/posts');
     });

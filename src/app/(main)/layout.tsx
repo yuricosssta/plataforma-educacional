@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { selectIsAuthenticated } from '@/lib/redux/slices/authSlice';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import Navbar from '@/components/Navbar';
+import { Navbar } from '@/components/Navbar';
+import { Header } from '@/components/Header';
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -18,13 +19,15 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 
   // Renderiza um loader ou null enquanto verifica a autenticação para evitar piscar a tela
   if (!isAuthenticated) {
-    return null; 
+    return null;
   }
 
   return (
     <div>
-      <Navbar />
+      {/* <Header /> */}
+      <Navbar />      
       <main className="p-8">
+      
         {children}
       </main>
     </div>
