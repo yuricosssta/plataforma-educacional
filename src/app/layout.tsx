@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ReduxProvider } from "@/lib/redux/ReduxProvider";
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 import { Providers } from "./providers";
 
 const fontSans = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -22,8 +22,9 @@ export default function RootLayout({
 
       <body className={cn(
         "min-h-screen bg-background font-sans antialiased max-w-6xl m-auto",
-        fontSans.variable
-      )}>
+        fontSans.variable 
+      )}> 
+      
         <Providers>
           <ReduxProvider>{children}</ReduxProvider>
         </Providers>

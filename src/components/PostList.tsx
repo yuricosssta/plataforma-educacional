@@ -3,30 +3,36 @@ import Link from "next/link";
 import { formatFullDate } from "./../lib/date";
 import { IPost } from "../types/IPost";
 
+
+
 interface PostsPreviewProps {
   posts: IPost[];
 }
+
 
 
 export const PostList = ({ posts }: { posts: PostsPreviewProps["posts"] }) => {
   console.log("Posts recebidos:", posts.map(p => ({ id: p._id, title: p.title })));
   return (
     <div className="grid grid-cols-1 gap-16 md:grid-cols-2 px-4">
+      
       {posts.map((post) => (
         <div className="break-words" key={post._id}>
           {/* Link principal */}
           <Link href={`/posts/${post._id}`}>
             <div className="aspect-[16/9] relative cursor-pointer">
+              
               {/* {post.image ? (
-                <Image
+                <Image 
                   alt={post.title}
                   className="object-cover"
                   src={post.image}
                   fill
                 />
               ) : (
-                <Image src="" alt="placeholder" fill />
+                <Image src="https://placehold.co/600x400" alt="placeholder" fill />
               )} */}
+              
             </div>
           </Link>
 

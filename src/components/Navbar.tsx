@@ -35,7 +35,7 @@ export const Navbar: FunctionComponent = () => {
   ];
 
   return (
-    <nav>
+    <nav className='container mx-auto px-5'>
       <section className="flex items-center justify-between mt-8 md:mt-16 mb-12 md:mb-16 px-4">
         <Link href="/posts">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tighter leading-tight">
