@@ -1,42 +1,31 @@
 "use client";
+
 import { IPost } from "../types/IPost";
-import sanitize, { defaults } from "sanitize-html";
-// import NotFound, {} from "../../app/not-found"
 import Link from "next/link";
-
-export const PostContent = ({ content }: { content: string }) => {
-  const sanitizedContent = sanitize(content, {
-    allowedTags: [
-      "b", "br", "i", "em", "strong", "a", "img", "h1", "h2", "h3",
-      "code", "pre", "p", "li", "ul", "ol", "blockquote",
-      "td", "th", "table", "tr", "tbody", "thead", "tfoot",
-      "small", "div", "iframe"
-    ],
-    allowedAttributes: {
-      ...defaults.allowedAttributes,
-      "*": ["style"],
-      iframe: ["src", "allowfullscreen", "style"],
-    },
-    allowedIframeHostnames: ["www.youtube.com", "www.youtube-nocookie.com"],
-  });
-
-  return (
-    <article className="blog-content mx-auto" dangerouslySetInnerHTML={{ __html: sanitizedContent }}></article>
-  );
-};
+import Markdown from "react-markdown";
+import remarkGfm from 'remark-gfm';
 
 export const BlogPostContent = ({ post }: { post: IPost | null }) => {
   if (!post) return <p>Página não encontrada</p>;
-
   return (
     <div>
-
-      <div className="prose lg:prose-xl dark:prose-invert mx-auto lg:prose-h1:text-4xl mb-10 lg:mt-20 break-words">
+      <div className="max-w-4xl mx-auto px-4 py-8 mb-10 lg:mt-20 break-words">
         <Link href="/posts" className="btn btn-secondary">
           &larr; Voltar
         </Link>
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tighter leading-tight">{post.title}</h1>
-        <PostContent content={post.content || ""} />
+
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tighter leading-tight mb-4">
+          {post.title}
+        </h1>
+
+        <img src={post.image} alt={post.title} className="w-full h-auto rounded-lg mt-4" />
+
+        {/* <PostContent content={post.content || ""} /> */}
+        <article className="prose lg:prose-xl dark:prose-invert max-w-none">
+          <Markdown remarkPlugins={[remarkGfm]}>
+            {post.content || ""}
+          </Markdown>
+        </article>
 
         <div className="text-sm opacity-40 mt-4">
           {post.author && <span>Por: {post.author}</span>}
@@ -47,13 +36,12 @@ export const BlogPostContent = ({ post }: { post: IPost | null }) => {
               )}
             </span>
           }
-
         </div>
-
         <Link href={`/posts/${post._id}/edit`} className="btn btn-secondary">
           Editar
         </Link>
       </div>
+
     </div>
   );
 };

@@ -31,7 +31,7 @@ export const PostList = ({ posts }: { posts: PostsPreviewProps["posts"] }) => {
                 />
               ) : (
                 <Image src="https://placehold.co/600x400" alt="placeholder" fill />
-              )} */}
+              )} */}            
               
             </div>
           </Link>
@@ -42,7 +42,7 @@ export const PostList = ({ posts }: { posts: PostsPreviewProps["posts"] }) => {
               <Link href={`/posts/${post._id}`}>{post.title}</Link>
             </h2>
             <div className="prose lg:prose-lg leading-relaxed md:text-lg line-clamp-4 text-muted-foreground">
-              {post.description}
+              {post.content}
             </div>
             <Link href={`/posts/${post._id}/edit`} className="btn btn-sm btn-secondary">
                   Editar
