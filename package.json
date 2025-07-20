@@ -24,6 +24,7 @@
     "date-fns": "^4.1.0",
     "lucide-react": "^0.525.0",
     "markdown-it": "^14.1.0",
+    "markdown-it-highlightjs": "^4.2.0",
     "next": "15.4.1",
     "next-themes": "^0.4.6",
     "react": "^19.1.0",
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/markdown-it": "^14.1.2",
     "@types/node": "^20",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19",

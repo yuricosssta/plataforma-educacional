@@ -1,7 +1,7 @@
 "use client";
 
 import PostForm from '@/components/PostForm';
-import { fetchPostById, updatePost } from '@/lib/redux/slices/postsSlice';
+import { fetchPostById, updatePost, deletePost } from '@/lib/redux/slices/postsSlice';
 import { AppDispatch, RootState } from '@/lib/redux/store';
 import { IPost } from '@/types/IPost';
 import { useParams, useRouter } from 'next/navigation';
@@ -28,6 +28,15 @@ export default function EditPostPage() {
     });
   };
 
+  const handleDelete = () => {
+    // Adiciona uma confirmação para o usuário
+    if (window.confirm('Tem certeza que deseja deletar esta publicação? Esta ação não pode ser desfeita.')) {
+      dispatch(deletePost(id)).then(() => {
+        router.push('/posts'); // Redireciona para a lista de posts após deletar
+      });
+    }
+  };
+
   if (!currentPost || currentPost._id !== id) {
     return <p>Carregando dados do post...</p>;
   }
@@ -40,6 +49,15 @@ export default function EditPostPage() {
         initialData={currentPost}
         isLoading={status === 'loading'} 
       />
+      <div className="mt-8 pt-6 border-t border-gray-200">
+        <button
+          type="button" // 'type="button"' impede que o botão envie o formulário
+          onClick={handleDelete}
+          className="mt-4 inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none"
+        >
+          Deletar Publicação
+        </button>
+      </div>
     </div>
   );
 }

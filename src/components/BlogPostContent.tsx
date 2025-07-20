@@ -4,10 +4,13 @@ import { IPost } from "../types/IPost";
 import Link from "next/link";
 import Markdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
+import MarkdownIt from 'markdown-it';
+import highlightjs from 'markdown-it-highlightjs';
 
 export const BlogPostContent = ({ post }: { post: IPost | null }) => {
   if (!post) return <p>Página não encontrada</p>;
-  return (
+
+    return (
     <div>
       <div className="max-w-4xl mx-auto px-4 py-8 mb-10 lg:mt-20 break-words">
         <Link href="/posts" className="btn btn-secondary">
@@ -21,10 +24,9 @@ export const BlogPostContent = ({ post }: { post: IPost | null }) => {
         <img src={post.image} alt={post.title} className="w-full h-auto rounded-lg mt-4" />
 
         {/* <PostContent content={post.content || ""} /> */}
-        <article className="prose lg:prose-xl dark:prose-invert max-w-none">
-          <Markdown remarkPlugins={[remarkGfm]}>
-            {post.content || ""}
-          </Markdown>
+        <article className="prose lg:prose-xl dark:prose-invert">           
+          <Markdown remarkPlugins={[remarkGfm]}>{post.content || ""}</Markdown>
+          
         </article>
 
         <div className="text-sm opacity-40 mt-4">
