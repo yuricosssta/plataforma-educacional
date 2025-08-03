@@ -2,6 +2,7 @@
 
 import { useState, FormEvent, useEffect } from 'react';
 import { IPost } from '@/types/IPost';
+import { TextSummarizer } from './TextSummarizer';
 
 interface PostFormProps {
   onSubmit: (post: Omit<IPost, 'id'> | IPost) => void;

@@ -15,9 +15,16 @@ interface AuthState {
 }
 
 // Tenta carregar o token do localStorage no estado inicial
+// const initialState: AuthState = {
+//   token: typeof window !== 'undefined' ? localStorage.getItem('token') : null,
+//   isAuthenticated: !!(typeof window !== 'undefined' && localStorage.getItem('token')),
+//   status: 'idle',
+//   error: null,
+// };
+
 const initialState: AuthState = {
-  token: typeof window !== 'undefined' ? localStorage.getItem('token') : null,
-  isAuthenticated: !!(typeof window !== 'undefined' && localStorage.getItem('token')),
+  token: null,
+  isAuthenticated: false,
   status: 'idle',
   error: null,
 };
@@ -34,6 +41,11 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    setAuthState: (state, action: PayloadAction<{ token: string | null; isAuthenticated: boolean }>) => {
+      state.token = action.payload.token;
+      state.isAuthenticated = action.payload.isAuthenticated;
+    },
+
     logout: (state) => {
       localStorage.removeItem('token');
       state.token = null;
@@ -58,7 +70,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { setAuthState, logout } = authSlice.actions;
 
 export const selectIsAuthenticated = (state: RootState) => state.auth.isAuthenticated;
 export const selectAuthToken = (state: RootState) => state.auth.token;

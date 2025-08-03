@@ -49,7 +49,7 @@ export default function PostDetailPage() {
        <div>
         <BlogPostContent post={currentPost}/>
        </div>
-       <Footer />
+       {/* <Footer /> */}
     </div>
   );
 } 

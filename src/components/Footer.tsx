@@ -8,7 +8,8 @@ import { Button } from "./ui/button";
 
 export const Footer: FunctionComponent = () => {
   return (
-    <section className="mt-8 md:mt-16 mb-12">
+    <section className="container mx-auto px-5 mt-8 md:mt-16 mb-12">
+    {/* <section className="container mx-auto px-5 flex items-center justify-between mt-8 md:mt-16 mb-12 md:mb-16 px-4"> */}
       <div className="flex items-center justify-between">
         <div className="text-sm text-muted-foreground">
           © Escola Desafio {new Date().getFullYear()}

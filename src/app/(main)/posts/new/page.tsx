@@ -1,6 +1,7 @@
 "use client";
 
 import PostForm from '@/components/PostForm';
+import { TextSummarizer } from '@/components/TextSummarizer';
 import { createNewPost } from '@/lib/redux/slices/postsSlice';
 import { AppDispatch, RootState } from '@/lib/redux/store';
 import { IPost } from '@/types/IPost';
@@ -21,6 +22,7 @@ export default function NewPostPage() {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6">Criar Nova Publicação</h1>
+      <TextSummarizer />
       <PostForm onSubmit={handleSubmit} isLoading={status === 'loading'} />
     </div>
   );

@@ -14,7 +14,7 @@ interface MenuItem {
   name: string;
   href?: string;
   onClick?: () => void;
-  openInNewTab?: boolean;
+  openInNewTab?: boolean; 
 }
 
 export const Navbar: FunctionComponent = () => {

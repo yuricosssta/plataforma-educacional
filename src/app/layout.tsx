@@ -4,6 +4,9 @@ import "./globals.css";
 import { ReduxProvider } from "@/lib/redux/ReduxProvider";
 import { cn } from "../lib/utils";
 import { Providers } from "./providers";
+import { Navbar } from "@/components/Navbar";
+import { AuthInitializer } from "@/lib/redux/AuthInitializer";
+import { Footer } from "@/components/Footer";
 
 const fontSans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -19,14 +22,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-
       <body className={cn(
         "min-h-screen bg-background font-sans antialiased max-w-6xl m-auto",
-        fontSans.variable 
-      )}> 
-      
+        // fontSans.variable
+      )}>
         <Providers>
-          <ReduxProvider>{children}</ReduxProvider>
+          <ReduxProvider>
+            <AuthInitializer />
+            <Navbar />
+            {children}
+            <Footer />
+          </ReduxProvider>
         </Providers>
       </body>
 

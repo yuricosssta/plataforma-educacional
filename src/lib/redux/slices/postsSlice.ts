@@ -32,7 +32,7 @@ export const createNewPost = createAsyncThunk<IPost, Omit<IPost, '_id'>>('posts/
   return response.data;
 });
 
-export const updatePost = createAsyncThunk<IPost, IPost>('posts/updatePost', async (post) => {
+export const updatePost = createAsyncThunk<IPost, IPost>('posts/updatePost', async (post) => { 
   const response = await axiosInstance.put(`/posts/${post._id}`, post);
   return response.data;
 });
