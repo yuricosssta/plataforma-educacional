@@ -24,12 +24,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <div>
-      {/* <Navbar />       */}
+    <div>      
       <main className="p-8">      
         {children}
-      </main>
-      {/* <Footer /> */}
+      </main>      
     </div>
   );
 }
